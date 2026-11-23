@@ -1,0 +1,76 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-color: var(--brand-border);
+}
+
+.title {
+  font-size: 1.15rem;
+  outline: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.option:hover {
+  border-color: var(--brand-border);
+}
+
+.option[data-selected="true"] {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand);
+  flex-shrink: 0;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.correct {
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.incorrect {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.explanation {
+  font-size: 14px;
+}

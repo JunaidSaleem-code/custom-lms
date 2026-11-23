@@ -1,0 +1,128 @@
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.value {
+  margin-top: 6px;
+  font-size: 1.85rem;
+  font-weight: 650;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.courseList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.courseItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.courseHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.courseTitle {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.courseTitle:hover {
+  color: var(--brand);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.table th {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.lessonLink {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lessonLink:hover {
+  color: var(--brand);
+}
+
+.courseName {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+}
+
+.pointRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}

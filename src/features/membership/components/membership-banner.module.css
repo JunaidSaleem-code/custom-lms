@@ -1,0 +1,36 @@
+.banner {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 24px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.title {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.info {
+  border-color: var(--brand-border);
+  background: var(--brand-soft);
+}
+
+.warning {
+  border-color: rgba(246, 201, 107, 0.4);
+  background: rgba(246, 201, 107, 0.08);
+}
+
+.danger {
+  border-color: rgba(240, 138, 138, 0.4);
+  background: rgba(240, 138, 138, 0.08);
+}

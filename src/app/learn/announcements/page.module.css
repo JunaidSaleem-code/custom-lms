@@ -1,0 +1,32 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.body {
+  white-space: pre-line;
+  color: var(--text);
+  font-size: 15px;
+}

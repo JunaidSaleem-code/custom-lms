@@ -1,0 +1,72 @@
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.crumbs a:hover {
+  color: var(--brand);
+}
+
+.thread {
+  margin-bottom: 20px;
+}
+
+.messages {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+}
+
+.bubble {
+  max-width: 82%;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.mine {
+  align-self: flex-end;
+  margin-left: auto;
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.theirs {
+  align-self: flex-start;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.sender {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.text {
+  white-space: pre-line;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.composer {
+  max-width: 760px;
+}
+
+@media (max-width: 560px) {
+  .bubble {
+    max-width: 96%;
+  }
+}

@@ -1,0 +1,77 @@
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.pill:hover {
+  color: var(--text);
+  border-color: var(--brand-border);
+}
+
+.pill[aria-current="page"] {
+  color: var(--brand);
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.composer {
+  margin-bottom: 24px;
+}
+
+.feed {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.author {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.body {
+  white-space: pre-line;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

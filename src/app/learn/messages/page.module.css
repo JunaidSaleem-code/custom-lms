@@ -1,0 +1,25 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 680px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  transition: border-color 0.15s ease;
+}
+
+.item:hover {
+  border-color: var(--brand-border);
+}
+
+.title {
+  font-weight: 600;
+  color: var(--text);
+}

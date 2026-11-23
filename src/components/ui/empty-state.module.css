@@ -1,0 +1,9 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.body p + p {
+  margin-top: 8px;
+}

@@ -1,0 +1,87 @@
+.modules {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.module {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.moduleTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 1rem;
+}
+
+.moduleIndex {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.moduleDescription {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.lessons {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.lesson:hover {
+  background: var(--surface-raised);
+  border-color: var(--border);
+}
+
+.lesson[aria-current="step"] {
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.lessonTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .lesson {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
