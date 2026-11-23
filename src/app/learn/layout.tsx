@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/features/auth/session";
 import { getOwnProfile } from "@/features/account/queries";
-import { hasAdminAccess } from "@/features/admin/access";
 import { SignOutForm } from "@/features/auth/components/sign-out-form";
 import { LearnSidebar } from "@/components/layout/learn-sidebar";
 import { RoleSwitch } from "@/components/layout/role-switch";
@@ -21,7 +20,8 @@ export default async function LearnLayout({ children }: { children: ReactNode })
     <div className={styles.shell}>
       <LearnSidebar>
         <div className={styles.account}>
-          {hasAdminAccess(profile) && <RoleSwitch current="student" />}
+          {/* Shown to everyone for now. /admin still checks the admin role, so non-admins are sent back here. */}
+          <RoleSwitch current="student" />
           <span className={styles.name}>{displayName}</span>
           <SignOutForm />
         </div>
