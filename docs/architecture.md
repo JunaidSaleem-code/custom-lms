@@ -143,7 +143,7 @@ custom-lms/
 | 0 | Accounts, repo, hosting, Supabase project, CI basics, job queue, logging, and analytics event naming (event names defined before features emit them) | Waiting on accounts (client) |
 | 0b | **Voice prototype spike** (throwaway): microphone access, speech in/out, latency, provider feasibility, cost estimate. Runs in parallel with Phase 1 | Needs voice-provider choice |
 | 1 | **Student dashboard**: login, courses by plan, modules, video with tracking, progress, quizzes with points, certificates, communities, messages, announcements, group calls (view only) | Schema drafted (this document) |
-| 2 | Admin dashboard: students, invitations, plans, course builder, analytics | Not started |
+| 2 | Admin dashboard: students, invitations, plans, course builder, analytics | Built (see `docs/PLACEHOLDERS.md` item 14). Needs browser testing with an admin account |
 | 3 | Stripe sync, onboarding emails, expiry job | Not started |
 | 4 | AI video question generation and admin review | Not started |
 | 5 | AI voice roleplay and performance reports (required for initial release per the brief) | Not started; provider evaluation needed |

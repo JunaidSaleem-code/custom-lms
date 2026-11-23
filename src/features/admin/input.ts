@@ -46,3 +46,11 @@ export function parseSeconds(raw: string, label: string): { ok: true; value: num
   if (!Number.isFinite(n) || n < 0 || n > 86400) return { ok: false, error: `${label} must be between 0 and 86400 seconds.` };
   return { ok: true, value: Math.round(n * 100) / 100 };
 }
+
+// Splits items with a start time into upcoming (today onwards) and past, newest upcoming first.
+// The clock is passed in so the split is a pure function and easy to test.
+export function splitByStart<T extends { starts_at: string }>(items: readonly T[], now: number = Date.now()): { upcoming: T[]; past: T[] } {
+  const upcoming = items.filter((i) => new Date(i.starts_at).getTime() >= now).sort((a, b) => a.starts_at.localeCompare(b.starts_at));
+  const past = items.filter((i) => new Date(i.starts_at).getTime() < now).sort((a, b) => b.starts_at.localeCompare(a.starts_at));
+  return { upcoming, past };
+}

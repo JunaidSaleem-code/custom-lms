@@ -4,8 +4,8 @@ import { updateSession } from "@/lib/supabase/session";
 
 // Pages that only make sense when logged out.
 const LOGGED_OUT_ONLY = new Set(["/login", "/signup", "/forgot-password"]);
-// Everything under /learn needs a session. Pages also check this themselves (defence in depth).
-const PROTECTED_PREFIX = "/learn";
+// Everything under /learn and /admin needs a session. Pages also check this themselves (defence in depth).
+const PROTECTED_PREFIXES = ["/learn", "/admin"];
 // Always reachable, even before configuration is complete.
 const OPEN_WITHOUT_CONFIG = new Set(["/", "/setup"]);
 
@@ -24,7 +24,7 @@ export async function proxy(request: NextRequest) {
 
   const { response, user } = await updateSession(request);
 
-  if (pathname.startsWith(PROTECTED_PREFIX) && !user) {
+  if (PROTECTED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)) && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
