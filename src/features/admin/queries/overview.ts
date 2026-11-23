@@ -15,7 +15,7 @@ import {
 export async function getOverview(db: SupabaseClient, now = new Date()) {
   const since90 = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000).toISOString();
   const [students, enrollments, events, progress, lessons, users] = await Promise.all([
-    db.from("profiles").select("id, last_active_at").eq("role", "student"),
+    db.from("profiles").select("id, full_name, last_active_at").eq("role", "student"),
     db.from("enrollments").select("user_id, plan_id, status, starts_at, expires_at"),
     db.from("lesson_events").select("occurred_at").gte("occurred_at", since90).limit(20000),
     db.from("lesson_progress").select("user_id").not("completed_at", "is", null),

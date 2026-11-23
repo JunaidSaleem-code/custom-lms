@@ -81,7 +81,7 @@ export default async function AdminOverviewPage() {
         </section>
       </div>
 
-      <section className={`card ${styles.panel}`} aria-labelledby="recent-heading" style={{ marginTop: 16 }}>
+      <section className={`card ${styles.panel} ${styles.gapAbove}`} aria-labelledby="recent-heading">
         <h2 id="recent-heading">Last active students</h2>
         {o.lastActiveSorted.length === 0 ? (
           <EmptyState title="No activity yet">
@@ -92,7 +92,7 @@ export default async function AdminOverviewPage() {
             {o.lastActiveSorted.map((s) => (
               <li key={s.id} className={styles.itemHead}>
                 <Link href={`/admin/students/${s.id}`} className={styles.itemTitle}>
-                  Open student
+                  {s.full_name || "No name yet"}
                 </Link>
                 <span className="hint">
                   Last active <LocalTime iso={s.last_active_at!} />
@@ -103,7 +103,7 @@ export default async function AdminOverviewPage() {
         )}
       </section>
 
-      <p className="hint" style={{ marginTop: 20 }}>
+      <p className="hint">
         Churn and retention are estimates from enrollment dates and last-active times.
       </p>
     </>

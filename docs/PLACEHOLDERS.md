@@ -26,12 +26,12 @@ Status key: **Open** = not started. **Blocked** = waiting on a client decision o
 | 11 | Lesson materials | Lesson page "Materials" list | Shows titles only. Needs Storage bucket and signed download links. |
 | 12 | Group call join links | Calls page | Stored by hand in `group_calls.join_url`. |
 | 13 | Quick-check answers | Lesson page | Explanation shown, correct option not revealed (intentional). |
+| 14 | Admin dashboard | `/admin` (admins only; switch with the Student / Admin toggle in the sidebar) | Overview analytics, students (invite, plans, memberships, extend or end access, password reset, remove, activity and video progress), plans, course builder (modules, lessons, quick checks), communities, announcements, group calls, messages. Video ids are pasted by hand from Cloudflare Stream (no upload from the portal yet). Courses, modules and lessons can be hidden with Draft but not deleted, so student progress is kept. Admin is one role flag (`set-admin.mjs`); finer roles come later. |
 
 ## Not built yet
 
 | # | Item | Planned phase | Notes |
 |---|---|---|---|
-| 14 | Admin dashboard (students, invites, plans, course builder, analytics) | Phase 2 | Admin RLS exists. Admin UI and server routes do not. |
 | 15 | Stripe checkout and webhook enrollment sync | Phase 3 | Enrollments are manual until then. |
 | 16 | Onboarding and expiry emails | Phase 3 | Currently only Supabase auth emails. |
 | 17 | Expiry job (`pg_cron`) | Phase 3 | SQL is commented out in migration 0001. Access is still date-checked. |
@@ -48,7 +48,8 @@ Status key: **Open** = not started. **Blocked** = waiting on a client decision o
 
 ## Verified
 
-- Typecheck, lint, 60 unit tests, production build.
+- Typecheck, lint, 77 unit tests, production build (admin routes included).
+- Admin area guard: logged-out requests to `/admin/*` are redirected to `/login` (checked on the production build).
 - Database checks: 40 local checks across migrations 0001–0003.
 - Student data check against the hosted dev project through row-level security (see the seed and verification notes in `docs/dev-setup.md`).
 
@@ -61,6 +62,7 @@ Status key: **Open** = not started. **Blocked** = waiting on a client decision o
 - To give any dev account the sample membership and activity: node --env-file=.env.local scripts/dev-seed.mjs --grant=EMAIL
 
 - Real browser testing of every page (not yet run in a browser by the team).
+- Admin dashboard in a browser, signed in as an admin account: every page, every form (invites, memberships, course builder, Stream video ids, messages). Not run yet.
 - Accessibility audit (keyboard, screen reader, contrast of the final design).
 - Video playback (needs item 1).
 - End-to-end sign-in and sign-up through the browser with a real invite and reset email.

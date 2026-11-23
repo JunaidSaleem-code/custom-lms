@@ -51,6 +51,7 @@ export async function getThreadAdmin(db: SupabaseClient, id: string) {
       id: m.id,
       body: m.body,
       created_at: m.created_at,
+      senderId: m.sender_id as string | null,
       senderName: m.sender_id ? names.get(m.sender_id) ?? "Member" : "Former member",
     })),
   };

@@ -94,6 +94,19 @@
   gap: 12px;
 }
 
+/* Vertical spacing helpers. */
+.gapAbove {
+  margin-top: 16px;
+}
+
+.gapBelow {
+  margin-bottom: 28px;
+}
+
+.gapSmall {
+  margin-bottom: 12px;
+}
+
 /* Full-width line inside a wrapping action row (used for inline feedback messages). */
 .full {
   flex-basis: 100%;
@@ -153,8 +166,58 @@
   font-variant-numeric: tabular-nums;
 }
 
+.statValueSmall {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+
 .num {
   font-variant-numeric: tabular-nums;
+}
+
+/* Bordered sub-section inside a card (e.g. "Add a membership"). */
+.boxed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+}
+
+.stackTight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progressCell {
+  min-width: 120px;
+}
+
+/* One answer option in the quiz builder: radio (correct) + text. */
+.optionRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.optionRow input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand);
+}
+
+/* Small secondary line under a table cell value. */
+.subline {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 /* ---------- tables ---------- */
@@ -273,7 +336,7 @@
 }
 
 .summary::after {
-  content: "Edit";
+  content: "Open";
   font-size: 13px;
   font-weight: 600;
   color: var(--brand);
