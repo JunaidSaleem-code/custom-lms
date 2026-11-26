@@ -4,11 +4,9 @@ import { switchRoleAction } from "@/features/admin/actions/role";
 type Props = { current: "student" | "admin" };
 
 // Toggle between the student dashboard and the admin dashboard.
-// DEV ONLY for now: each click changes the account's role (see features/admin/actions/role.ts).
-// Hidden in production, where admin is granted with scripts/set-admin.mjs.
+// DEMO MODE: each click changes the account's role (see features/admin/actions/role.ts),
+// on every build including production. Before real students use the site, restore the guard.
 export function RoleSwitch({ current }: Props) {
-  if (process.env.NODE_ENV === "production") return null;
-
   return (
     <nav aria-label="Dashboard view" className={styles.switch}>
       <form action={switchRoleAction}>
