@@ -15,12 +15,14 @@ export default async function AdminLayout({ children }: { children: ReactNode })
     <div className={styles.shell}>
       <LearnSidebar items={ADMIN_NAV} brand="Admin" brandHref="/admin" label="Admin navigation">
         <div className={styles.account}>
-          <RoleSwitch current="admin" />
           <span className={styles.name}>{displayName}</span>
           <SignOutForm />
         </div>
       </LearnSidebar>
       <main className={styles.main} id="main">
+        <div className={styles.topbar}>
+          <RoleSwitch current="admin" />
+        </div>
         {children}
       </main>
     </div>

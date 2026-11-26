@@ -12,9 +12,9 @@
   --brand-ink: #071218;           /* text placed on brand-coloured surfaces */
 
   --bg: #0a0b0d;                  /* near-black page background */
-  --surface: #111317;             /* sidebar, cards */
-  --surface-raised: #181b21;      /* hover, inputs */
-  --border: #262b33;
+  --surface: #181b22;             /* sidebar, cards: clearly lighter than the page */
+  --surface-raised: #232832;      /* hover, inputs, switch track */
+  --border: #3d444f;              /* visible edges on cards, inputs and dividers */
   --text: #f3f6f9;
   --text-muted: #9aa4af;
   --danger: #f08a8a;

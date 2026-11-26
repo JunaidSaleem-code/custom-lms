@@ -9,8 +9,8 @@ import styles from "./page.module.css";
 export const metadata: Metadata = { title: "Certificates" };
 
 export default async function CertificatesPage() {
-  const { supabase } = await requireUser();
-  const certificates = await listCertificates(supabase);
+  const { supabase, user } = await requireUser();
+  const certificates = await listCertificates(supabase, user.id);
 
   return (
     <>

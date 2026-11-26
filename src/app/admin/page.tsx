@@ -26,6 +26,12 @@ export default async function AdminOverviewPage() {
         description="How students, memberships and lessons are doing. Figures update on each page load."
       />
 
+      {/* Placeholder (docs/PLACEHOLDERS.md #25): analytics events are not defined yet. */}
+      <section className="card" aria-labelledby="analytics-heading" style={{ marginBottom: 16 }}>
+        <h2 id="analytics-heading">Engagement analytics</h2>
+        <p className="hint">Detailed analytics coming soon. Event names are still to be defined.</p>
+      </section>
+
       <section className={styles.stats} aria-label="Key figures">
         <div className={`card ${styles.stat}`}>
           <span className={styles.statLabel}>Students</span>

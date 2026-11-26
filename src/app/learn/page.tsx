@@ -19,7 +19,7 @@ export default async function DashboardPage() {
   const [profile, membership, data] = await Promise.all([
     getOwnProfile(supabase, user.id),
     getMembershipState(supabase),
-    getDashboardData(supabase),
+    getDashboardData(supabase, user.id),
   ]);
 
   const firstName = profile?.full_name?.split(" ")[0];
@@ -167,6 +167,14 @@ export default async function DashboardPage() {
                 ))}
               </ul>
             )}
+          </section>
+
+          {/* Placeholder (docs/PLACEHOLDERS.md #4 and #20): leaderboard waits on the points rules. */}
+          <section className={styles.block} aria-labelledby="leaderboard-heading">
+            <h2 id="leaderboard-heading" className={styles.sectionLabel}>
+              Leaderboard
+            </h2>
+            <p className="hint">Leaderboard coming soon.</p>
           </section>
         </aside>
       </div>

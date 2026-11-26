@@ -26,11 +26,35 @@ export default async function AccountPage() {
           <ProfileForm email={user.email ?? ""} fullName={profile.full_name} phone={profile.phone} />
         </section>
 
+        {/* Placeholder (docs/PLACEHOLDERS.md #21): profile photo upload is not built yet. */}
+        <section className={`card ${styles.panel}`} aria-labelledby="photo-heading">
+          <h2 id="photo-heading">Profile photo</h2>
+          <p className="hint">Photo upload is coming soon.</p>
+          <div>
+            <button type="button" className="btn btn-ghost" disabled>
+              Upload photo (coming soon)
+            </button>
+          </div>
+        </section>
+
         <section className={`card ${styles.panel}`} aria-labelledby="password-heading">
           <h2 id="password-heading">Password</h2>
           <PasswordForm />
         </section>
       </div>
+
+      {/* Placeholders (docs/PLACEHOLDERS.md #22 and #27): app install and two-step sign-in are not built yet. */}
+      <section className={`card ${styles.panel}`} aria-labelledby="security-heading">
+        <h2 id="security-heading">Security and app</h2>
+        <div className={styles.sessionActions}>
+          <button type="button" className="btn btn-ghost" disabled title="Two-step sign-in is coming soon">
+            Two-step sign-in (coming soon)
+          </button>
+          <button type="button" className="btn btn-ghost" disabled title="Installing the app is coming soon">
+            Install app (coming soon)
+          </button>
+        </div>
+      </section>
 
       <section className={`card ${styles.panel}`} aria-labelledby="sessions-heading">
         <h2 id="sessions-heading">Sessions</h2>

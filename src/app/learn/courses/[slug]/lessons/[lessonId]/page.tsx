@@ -17,8 +17,8 @@ const uuid = z.uuid();
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lessonId } = await params;
   if (!uuid.safeParse(lessonId).success) return { title: "Lesson" };
-  const { supabase } = await requireUser();
-  const page = await getLessonPage(supabase, lessonId);
+  const { supabase, user } = await requireUser();
+  const page = await getLessonPage(supabase, lessonId, user.id);
   return { title: page?.lesson.title ?? "Lesson" };
 }
 
@@ -28,8 +28,8 @@ export default async function LessonPage({ params }: Props) {
   // Reject malformed ids before they reach the database.
   if (!uuid.safeParse(lessonId).success) notFound();
 
-  const { supabase } = await requireUser();
-  const data = await getLessonPage(supabase, lessonId);
+  const { supabase, user } = await requireUser();
+  const data = await getLessonPage(supabase, lessonId, user.id);
   if (!data) notFound();
 
   // The URL must match the lesson's course. Otherwise redirect to the canonical address.

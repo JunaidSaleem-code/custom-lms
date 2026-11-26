@@ -27,13 +27,14 @@ export type DashboardData = {
   latestAnnouncements: Announcement[];
 };
 
-export async function getDashboardData(supabase: SupabaseClient, now = new Date()): Promise<DashboardData> {
+// Points are filtered to the signed-in student explicitly (admin accounts can read every row under RLS).
+export async function getDashboardData(supabase: SupabaseClient, userId: string, now = new Date()): Promise<DashboardData> {
   const [courses, points, calls, announcements, resume] = await Promise.all([
-    listCourses(supabase),
-    supabase.from("user_points").select("total_points").maybeSingle(),
+    listCourses(supabase, userId),
+    supabase.from("user_points").select("total_points").eq("user_id", userId).maybeSingle(),
     listRecentAndUpcomingCalls(supabase, now),
     listAnnouncements(supabase, 3),
-    getResumeLesson(supabase),
+    getResumeLesson(supabase, userId),
   ]);
 
   if (points.error) throw new Error(`Could not load points: ${points.error.message}`);
@@ -55,12 +56,13 @@ export async function getDashboardData(supabase: SupabaseClient, now = new Date(
 }
 
 // The most recently touched lesson that isn't finished yet.
-async function getResumeLesson(supabase: SupabaseClient): Promise<ContinueLesson | null> {
+async function getResumeLesson(supabase: SupabaseClient, userId: string): Promise<ContinueLesson | null> {
   const { data, error } = await supabase
     .from("lesson_progress")
     .select(
       "furthest_position_seconds, lessons(id, title, duration_seconds, modules(courses(slug, title)))",
     )
+    .eq("user_id", userId)
     .is("completed_at", null)
     .order("last_event_at", { ascending: false })
     .limit(1)

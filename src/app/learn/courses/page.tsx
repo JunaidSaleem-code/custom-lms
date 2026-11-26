@@ -10,9 +10,9 @@ import styles from "./page.module.css";
 export const metadata: Metadata = { title: "Courses" };
 
 export default async function CoursesPage() {
-  const { supabase } = await requireUser();
+  const { supabase, user } = await requireUser();
   const [courses, membership] = await Promise.all([
-    listCourses(supabase),
+    listCourses(supabase, user.id),
     getMembershipState(supabase),
   ]);
 
@@ -23,6 +23,15 @@ export default async function CoursesPage() {
         title="Your courses"
         description="Courses included in your membership plan."
       />
+
+      {/* Placeholder (docs/PLACEHOLDERS.md #19): AI voice roleplay is not built yet. */}
+      <section className="card" aria-labelledby="roleplay-heading" style={{ marginBottom: 16 }}>
+        <h2 id="roleplay-heading">Roleplay practice</h2>
+        <p className="hint">AI voice roleplay is coming soon.</p>
+        <button type="button" className="btn btn-ghost" disabled title="Roleplay is coming soon">
+          Start a roleplay (coming soon)
+        </button>
+      </section>
 
       {courses.length === 0 ? (
         <EmptyState title="No courses available yet">

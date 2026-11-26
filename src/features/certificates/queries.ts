@@ -10,10 +10,11 @@ export type CertificateView = {
 };
 
 // RLS returns only the student's own certificates.
-export async function listCertificates(supabase: SupabaseClient): Promise<CertificateView[]> {
+export async function listCertificates(supabase: SupabaseClient, userId: string): Promise<CertificateView[]> {
   const { data, error } = await supabase
     .from("certificates")
     .select("id, certificate_number, issued_at, pdf_path, courses(title)")
+    .eq("user_id", userId)
     .order("issued_at", { ascending: false });
   if (error) throw new Error(`Could not load certificates: ${error.message}`);
 

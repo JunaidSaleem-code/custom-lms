@@ -1,5 +1,7 @@
 .switch {
   display: grid;
+  min-width: 240px;
+  margin: 0;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
   padding: 3px;
@@ -8,11 +10,20 @@
   border: 1px solid var(--border);
 }
 
+.switch form {
+  display: contents;
+}
+
 .option {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 34px;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
   border-radius: 7px;
   font-size: 13px;
   font-weight: 600;

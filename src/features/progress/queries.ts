@@ -32,21 +32,25 @@ export type ProgressReport = {
   recentPoints: PointEntry[];
 };
 
-// Everything on the progress page. RLS limits each query to the student's own rows.
-export async function getProgressReport(supabase: SupabaseClient): Promise<ProgressReport> {
+// Everything on the progress page. Every query filters to the signed-in student explicitly.
+// Do not rely on RLS alone: admin accounts can read all rows, so an unfiltered
+// "maybeSingle" on user_points returns several totals and the page fails.
+export async function getProgressReport(supabase: SupabaseClient, userId: string): Promise<ProgressReport> {
   const [courses, lessonRows, attempts, points, recent] = await Promise.all([
-    listCourses(supabase),
+    listCourses(supabase, userId),
     supabase
       .from("lesson_progress")
       .select(
         "furthest_position_seconds, watched_seconds, completed_at, last_event_at, lessons(id, title, duration_seconds, modules(courses(slug, title)))",
       )
+      .eq("user_id", userId)
       .order("last_event_at", { ascending: false }),
-    supabase.from("question_attempts").select("is_correct"),
-    supabase.from("user_points").select("total_points").maybeSingle(),
+    supabase.from("question_attempts").select("is_correct").eq("user_id", userId),
+    supabase.from("user_points").select("total_points").eq("user_id", userId).maybeSingle(),
     supabase
       .from("points_ledger")
       .select("id, points, source_type, created_at")
+      .eq("user_id", userId)
       .order("created_at", { ascending: false })
       .limit(10),
   ]);

@@ -19,13 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CoursePage({ params }: Props) {
   const { slug } = await params;
-  const { supabase } = await requireUser();
+  const { supabase, user } = await requireUser();
 
   // Hidden by RLS when the course isn't in the student's plan, so this returns nothing.
   const course = await getCourseBySlug(supabase, slug);
   if (!course) notFound();
 
-  const modules = await getCourseOutline(supabase, course.id);
+  const modules = await getCourseOutline(supabase, course.id, user.id);
   const lessons = modules.flatMap((m) => m.lessons);
   const completed = lessons.filter((l) => l.status === "completed").length;
 

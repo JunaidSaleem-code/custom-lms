@@ -28,6 +28,17 @@ export default async function AdminCoursesPage() {
         <CourseForm />
       </section>
 
+      {/* Placeholder (docs/PLACEHOLDERS.md #18): AI question generation is not built yet. */}
+      <section className={`card ${styles.panel} ${styles.gapBelow}`} aria-labelledby="ai-questions-heading">
+        <h2 id="ai-questions-heading">AI question generation</h2>
+        <p className="hint">Generating quick checks from lesson content with review before publishing is coming soon.</p>
+        <div>
+          <button type="button" className="btn btn-ghost" disabled title="AI question generation is coming soon">
+            Generate questions (coming soon)
+          </button>
+        </div>
+      </section>
+
       {courses.length === 0 ? (
         <EmptyState title="No courses yet">
           <p>Create a course above, then add its modules and lessons in the course builder.</p>

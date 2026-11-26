@@ -9,6 +9,13 @@
   padding: clamp(20px, 4vw, 44px);
 }
 
+/* Top bar holding the Student / Admin switch. Sits above every page, so it is always visible. */
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
 .account {
   display: flex;
   flex-direction: column;

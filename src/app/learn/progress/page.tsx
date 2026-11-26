@@ -13,8 +13,8 @@ import styles from "./page.module.css";
 export const metadata: Metadata = { title: "Progress" };
 
 export default async function ProgressPage() {
-  const { supabase } = await requireUser();
-  const report = await getProgressReport(supabase);
+  const { supabase, user } = await requireUser();
+  const report = await getProgressReport(supabase, user.id);
 
   const accuracy =
     report.questionsAnswered > 0

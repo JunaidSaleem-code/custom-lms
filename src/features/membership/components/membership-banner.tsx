@@ -14,6 +14,12 @@ export function MembershipBanner({ state }: { state: MembershipState }) {
       <div className={styles.text}>
         <strong className={styles.title}>{view.title}</strong>
         <p>{view.body}</p>
+        {/* Placeholder (docs/PLACEHOLDERS.md #3 and #15): self-serve renewal waits on the payment decision. */}
+        {view.tone !== "info" && (
+          <button type="button" className="btn btn-ghost" disabled title="Renewal is coming soon">
+            Renew (coming soon)
+          </button>
+        )}
       </div>
     </section>
   );

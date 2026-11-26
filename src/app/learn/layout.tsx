@@ -20,13 +20,15 @@ export default async function LearnLayout({ children }: { children: ReactNode })
     <div className={styles.shell}>
       <LearnSidebar>
         <div className={styles.account}>
-          {/* Shown to everyone for now. /admin still checks the admin role, so non-admins are sent back here. */}
-          <RoleSwitch current="student" />
           <span className={styles.name}>{displayName}</span>
           <SignOutForm />
         </div>
       </LearnSidebar>
       <main className={styles.main} id="main">
+        {/* Shown to everyone for now. /admin still checks the admin role, so non-admins are sent back here. */}
+        <div className={styles.topbar}>
+          <RoleSwitch current="student" />
+        </div>
         {children}
       </main>
     </div>

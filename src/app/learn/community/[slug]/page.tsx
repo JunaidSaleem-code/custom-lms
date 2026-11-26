@@ -80,9 +80,16 @@ export default async function CommunityPage({ params, searchParams }: Props) {
                 </span>
               </header>
               <p className={styles.body}>{p.body}</p>
-              {p.authorId === user.id && (
+              {p.authorId === user.id ? (
                 <div className={styles.actions}>
                   <DeletePostButton postId={p.id} communitySlug={community.slug} />
+                </div>
+              ) : (
+                // Placeholder (docs/PLACEHOLDERS.md #24): reporting is not built yet.
+                <div className={styles.actions}>
+                  <button type="button" className="btn btn-ghost" disabled title="Reporting is coming soon">
+                    Report (coming soon)
+                  </button>
                 </div>
               )}
             </li>

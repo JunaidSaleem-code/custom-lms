@@ -211,3 +211,23 @@
     padding-top: 36px;
   }
 }
+
+/* Panels are boxed so each one reads as a separate card against the page background. */
+.resume,
+.courses,
+.block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.resume {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 22px;
+}
+
+.courseRow:hover {
+  background: var(--surface-raised);
+}

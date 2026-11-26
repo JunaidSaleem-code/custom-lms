@@ -21,6 +21,13 @@ export default async function MessagesPage() {
         description="Private conversations with the Sales Coaching team."
       />
 
+      {/* Placeholder (docs/PLACEHOLDERS.md #23): students cannot start conversations yet. */}
+      <div className={styles.newThread}>
+        <button type="button" className="btn btn-ghost" disabled title="Students can't start conversations yet">
+          New conversation (coming soon)
+        </button>
+      </div>
+
       {threads.length === 0 ? (
         <EmptyState title="No conversations yet">
           <p>The Sales Coaching team will start a conversation with you here when needed.</p>

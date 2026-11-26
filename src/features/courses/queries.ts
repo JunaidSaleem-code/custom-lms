@@ -9,14 +9,14 @@ type ProgressRow = {
 };
 
 // Lists courses the student can access. RLS hides anything outside their plan.
-export async function listCourses(supabase: SupabaseClient): Promise<CourseSummary[]> {
+export async function listCourses(supabase: SupabaseClient, userId: string): Promise<CourseSummary[]> {
   const [courses, progress] = await Promise.all([
     supabase
       .from("courses")
       .select("id, slug, title, description, sort_order")
       .order("sort_order")
       .order("title"),
-    supabase.from("course_progress").select("course_id, total_lessons, completed_lessons"),
+    supabase.from("course_progress").select("course_id, total_lessons, completed_lessons").eq("user_id", userId),
   ]);
   if (courses.error) throw new Error(`Could not load courses: ${courses.error.message}`);
   if (progress.error) throw new Error(`Could not load progress: ${progress.error.message}`);
@@ -52,6 +52,7 @@ export async function getCourseBySlug(supabase: SupabaseClient, slug: string) {
 export async function getCourseOutline(
   supabase: SupabaseClient,
   courseId: string,
+  userId: string,
 ): Promise<ModuleOutline[]> {
   const [modules, progressRes] = await Promise.all([
     supabase
@@ -64,7 +65,8 @@ export async function getCourseOutline(
       .order("sort_order", { referencedTable: "lessons" }),
     supabase
       .from("lesson_progress")
-      .select("lesson_id, furthest_position_seconds, completed_at"),
+      .select("lesson_id, furthest_position_seconds, completed_at")
+      .eq("user_id", userId),
   ]);
   if (modules.error) throw new Error(`Could not load modules: ${modules.error.message}`);
   if (progressRes.error) throw new Error(`Could not load progress: ${progressRes.error.message}`);
@@ -109,7 +111,7 @@ export function toLessonSummary(l: LessonRow, p: ProgressRow | undefined): Lesso
 }
 
 // Everything the lesson page needs in one call. Returns null when the lesson is not visible to the student.
-export async function getLessonPage(supabase: SupabaseClient, lessonId: string) {
+export async function getLessonPage(supabase: SupabaseClient, lessonId: string, userId: string) {
   const { data: lesson, error } = await supabase
     .from("lessons")
     .select(
@@ -125,7 +127,7 @@ export async function getLessonPage(supabase: SupabaseClient, lessonId: string) 
 
   const [course, outline, questions, resources] = await Promise.all([
     supabase.from("courses").select("id, slug, title").eq("id", courseId).maybeSingle(),
-    getCourseOutline(supabase, courseId),
+    getCourseOutline(supabase, courseId, userId),
     supabase
       .from("lesson_questions")
       .select(
@@ -151,6 +153,7 @@ export async function getLessonPage(supabase: SupabaseClient, lessonId: string) 
     ? await supabase
         .from("question_attempts")
         .select("question_id, selected_option_id, is_correct, points_awarded")
+        .eq("user_id", userId)
         .in("question_id", questionIds)
     : { data: [], error: null };
   if (attempts.error) throw new Error(`Could not load answers: ${attempts.error.message}`);
