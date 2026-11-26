@@ -49,7 +49,9 @@ Status key: **Open** = not started. **Blocked** = waiting on a client decision o
 
 ## Verified
 
-- Typecheck, lint, 77 unit tests, production build (admin routes included).
+- Typecheck, lint, 77 unit tests, production build (admin routes included), re-run 2026-11-26 after the instant opt-out change.
+- Production server (2026-11-26): public pages return 200; every signed-in page and admin page redirects logged-out visitors to `/login`; a student account does not see the Student/Admin switch in the page HTML.
+- Dev console: the Next.js "uncached data outside Suspense" errors are gone on the course, admin course and dashboard pages after adding `export const instant = false` to the 26 per-user pages.
 - Browser (Playwright, dev server, 2026-11-26): student dashboard, courses (roleplay placeholder), progress (points crash fixed), messages (new-conversation placeholder), account (photo, two-step and install placeholders); admin overview (analytics placeholder), courses (AI placeholder), students, messages; Student/Admin switch in both directions. Dev console shows one Suspense warning per page (Next.js dev-only, not a runtime error). Also opened without errors: student community (Report placeholders), calls, announcements, certificates, lesson player (video placeholder); admin plans, communities, announcements, calls.
 - Forms tested in the browser (internal only): admin announcement saved as draft; admin course created as draft and a module added to it (both were removed afterwards); account details saved unchanged.
 - Student-only account, created and deleted by a test script (no email sent): all student pages load with status 200; all admin pages redirect to `/learn` (307). Checked over HTTP, not in the browser.
@@ -61,16 +63,15 @@ Status key: **Open** = not started. **Blocked** = waiting on a client decision o
 
 ## Not verified yet
 
-- Design pass (typography, dashboard hero, stats row) applied and built. Needs a visual review in a browser.
-- Sample student data (seed script) checked through row-level security, not yet through the browser.
-- Dashboard redesigned as a two-column layout (resume lesson and course rows on the left, next call and announcements on the right). Needs a visual review.
+- Design pass: contrast and card separation reviewed in the browser (2026-11-26). Typography and the stats row still need a full visual review.
+- Dashboard two-column layout: reviewed in the browser (2026-11-26); panels are now boxed cards.
 - Sample content now includes two courses, three lessons in the second course, announcements, a live call, a past call, community posts and messages. All labelled (sample).
 - To give any dev account the sample membership and activity: node --env-file=.env.local scripts/dev-seed.mjs --grant=EMAIL
 
 - Signed-in pages (student and admin) opened in the browser. Not yet opened: sign-up, forgot-password, reset-password, auth error and setup pages.
 - Not submitted on purpose, because they send email, notify students, or change credentials: invite student, send password reset, change password, send admin message, publish announcement, add membership or extend or end it, remove student, create community, new plan, new community post. Each needs a test account and an approved plan first.
 - Community post and delete flow: a post attempt was blocked by the permission system (it would appear to other members), so not tested. Delete own post still untested.
-- Admin dashboard in a browser, signed in as an admin account: every page, every form (invites, memberships, course builder, Stream video ids, messages). Not run yet.
-- Accessibility audit (keyboard, screen reader, contrast of the final design).
+- Admin dashboard forms not yet submitted: invites, memberships, Stream video ids, admin messages, course quick checks.
+- Accessibility audit: not done with a screen reader or an automated tool. Checked from code: page language set, focus ring defined, images have alt text. Muted text on card background is above 4.5:1 by estimate, not measured.
 - Video playback (needs item 1).
 - End-to-end sign-in and sign-up through the browser with a real invite and reset email.

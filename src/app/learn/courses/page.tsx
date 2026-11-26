@@ -51,3 +51,6 @@ export default async function CoursesPage() {
     </>
   );
 }
+
+// Per-user page: render on each request. Next.js instant navigation does not apply to personal data.
+export const instant = false;
